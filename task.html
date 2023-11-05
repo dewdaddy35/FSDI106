@@ -19,32 +19,35 @@
 <body>
     <h1>Task Manager</h1>
     <main>
-        <section id="list">A</section>
-        <section id="form">B</section>
-    </main>
-    <section id="form">
+        <section id="list">
+            <button id="btnDetails" class="btn btn-primary">Show/Hide Form</button>
+            <div class="pending-task">
+                <!-- task to be renderer -->
+            </div>
+        </section>    
+     <section id="form">
         <div class="mt-3">
             <i id="iconImportant" class="fa-regular fa-clipboard"></i>
         </div>
         <div class="mt-3">
             <label class="form-label">Title</label>
-            <input type="text" class="form-control" />
+            <input id="txtTitle" type="text" class="form-control" />
           </div>
           <div class="mt-3">
             <label class="form-label">Description</label>
-            <textarea row="3" class="form-control"></textarea>
+            <textarea id="txtDescription" row="3" class="form-control"></textarea>
           </div>
           <div class="mt-3">
             <label class="form-label">Color</label>
-            <input type="color" class="form-control" />
+            <input id="selColor" type="color" class="form-control" />
           </div>
           <div class="mt-3">
             <label class="form-label">Start Date</label>
-            <input type="datetime-local" class="form-control" />
+            <input id="selDate" type="datetime-local" class="form-control" />
           </div>
           <div class="mt-3">
             <label class="form-label">Status</label>
-            <select class="form-control">
+            <select id="selStatus" class="form-control">
               <option>New</option>
               <option>In progress</option>
               <option>Complete</option>
@@ -53,16 +56,19 @@
           </div>
           <div class="mt-3">
             <label class="form-label">Budget</label>
-            <input type="number" class="form-control" />
+            <input id="txtBudget" type="number" class="form-control" />
           </div>
           <div class="mt-3">
             <button id="btnSave" class="btn btn-dark">Save</button>
           </div>
         </section>
+    </main>
         <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous""></script>
+        crossorigin="anonymous"></script>
+        <script src="./scripts/task.js"></script>
         <script src="./scripts/lists.js"></script>
+        
     
 </body>
 </html>

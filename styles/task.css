@@ -2,16 +2,32 @@ html,
 body {
   margin: 0;
 }
+h1{
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+}
 main {
   display: flex;
+  height: calc(100vh - 37px);/*this will make the main element take the full height*/
+  
 }
 #list {
-  background-color: red;
-  height: 100px;
-  flex: 8;
-}
-#form {
   background-color: aqua;
-  height: 100px;
   flex: 4;
 }
+#btnDetails {
+    background-color: black;
+    font-weight: bold;
+    font-style: oblique;
+}
+#pending-task{
+   color: white;
+}
+#form {
+  background-color:rgba(9, 9, 36, 0.383);
+ flex: 6;
+ font-weight: bold;
+ font-style: oblique;
+ 
+ }
