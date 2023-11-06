@@ -14,7 +14,7 @@ main {
 }
 #list {
   background-color: aqua;
-  flex: 4;
+  flex: 8;
 }
 #btnDetails {
     background-color: black;
@@ -31,3 +31,44 @@ main {
  font-style: oblique;
  
  }
+ .task {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #1055cc;
+  padding: 10px;
+}
+
+.task-info {
+  flex: 2;
+}
+
+.task-status {
+  flex: 1;
+  text-align: center;
+}
+
+.date-budget {
+  flex: 1;
+  text-align: center;
+}
+
+/* Style adjustments (optional) */
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 5px 0;
+}
+
+.status {
+  background-color: #dad71fda;
+  padding: 50px;
+  width: 200px;
+  height: 80px;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+}
+
+/* Add any additional styling as needed */

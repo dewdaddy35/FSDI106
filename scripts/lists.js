@@ -16,14 +16,18 @@ function toggleVisibility(){
 //SRP single responsibility principle uncle BOB
 function displayTask(task)
 {
-    let syntax = `<h3>${task.title}</h3>
-    <h3>${task.description}</h3>
-    <h3>${task.color}</h3>
-    <h3>${task.date}</h3>
-    <h3>${task.status}</h3>
-    <h3>${task.budget}</h3> 
-    
-    `;
+    let syntax = 
+    `<div class="task" style="border-color:${task.color}">
+    <div class="task-info">
+      <h3>${task.title}</h3>
+      <p>${task.description}</p>      
+    </div>    
+      <label class="status">${task.status}</label>
+     <div class="date-budget">
+      <label>${task.date}</label>
+      <label>${task.budget}</label>
+    </div>
+  </div>`;
     $(".pending-task").append(syntax);
 }
 function saveTask() {
@@ -42,16 +46,72 @@ function saveTask() {
 
     let taskToSave = new Task( flag, title, description, color, date, status, budget);
     console.log(taskToSave);
-
+    
+   
 
 
     //save the server
+    $.ajax({
+        type: "POST",
+        url: "http://fsdiapi.azurewebsites.net/api/tasks/",
+        data: JSON.stringify(taskToSave),
+        contentType: "application/json",
+        success: function (response){
+            console.log(response);
+        }, 
+        error: function (error){
+            console.log(error);
+        } 
+    });
 
 
 
-    //display the task
-    displayTask(taskToSave);
+   // display the task
+   // displayTask(taskToSave);
+    clearForm();
+  }
 
+  function loadTask(){
+    $.ajax({
+        type: "GET",
+        url: "http://fsdiapi.azurewebsites.net/api/tasks",
+       
+        success: function (response){
+            let data = JSON.parse(response);
+            console.log(response);//JSON 
+            console.log(data);//Object plain text
+            for(let i=0; i<data.length; i++){
+                let task = data[i]
+                if(task.name == "Eric"){
+                    displayTask(task);
+                }
+            }
+        }, 
+       error: function (error){
+            console.log(error);
+       } 
+    });
+  }
+  function clearForm() {
+   $("#txtTitle").val('');
+   $("#txtDescription").val('');
+   $("#selColor").val('#000000');
+   $("#selDate").val('');
+   $("#selStatus").val('');
+   $("#txtBudget").val('');
+  }
+
+  function testRequest(){
+    $.ajax({
+        type:"GET",//this is the GET method which reads form the server
+        url: "http://fsdiapi.azurewebsites.net",
+        success: function (response){
+            console.log(response);
+        }, 
+        error: function (error){
+            console.log(error);
+        } 
+    });
   }
 
   function toggleImportant() {
@@ -70,11 +130,13 @@ function saveTask() {
 
   function init() {
     //load data
-  
+  loadTask();
     //hook events
     $("#btnSave").click(saveTask);
     $("#iconImportant").click(toggleImportant);
     $("#btnDetails").click(toggleVisibility);
+   
   }
+
   
   window.onload = init;
